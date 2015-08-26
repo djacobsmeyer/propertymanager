@@ -1,0 +1,7 @@
+<h4> Properties </h4>
+
+<%= render partial: 'form', locals: { property: @property} =%>
+
+<%= @properties.each do |p| %>
+  <% p.address %>
+<% end %>
