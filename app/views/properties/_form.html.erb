@@ -1,6 +1,6 @@
 <h5> Create New Property </h5>
 
-<%= form_for [property] do |f| %>
+<%= form_for [property, Property.new], remote: true do |f| %>
   <% if property.errors.any? %>
      <div class="alert alert-danger">
        <h4>There are <%= pluralize(property.errors.count, "error") %>.</h4>
@@ -10,19 +10,20 @@
          <% end %>
        </ul>
      </div>
-   <% end %>
+    <% end %>
    <%= form_group_tag(property.errors[:address]) do %>
      <%= f.label :address %>
      <%= f.text_field :address, class: 'form-control', placeholder: "Enter Address" %>
    <% end %>
-   <form class="form-inline">
-     <%= form_group_tag(property.errors[:city]) do %>
+    <div class="form-inline">
+      <%= form_group_tag(property.errors[:city]) do %>
        <%= f.text_field :city, class: 'form-control', placeholder: "Enter City" %>
-     <% end %>
-     <%= form_group_tag(property.errors[:state]) do %>
+      <% end %>
+      <%= form_group_tag(property.errors[:state]) do %>
        <%= f.text_field :state, class: 'form-control', placeholder: "Enter State" %>
-     <% end %>
-   </form>
+      <% end %>
+    </div>
+
    <%= form_group_tag(property.errors[:zipcode]) do %>
      <%= f.text_field :zipcode, class: 'form-control', placeholder: "Enter Zipcode" %>
    <% end %>
@@ -31,7 +32,3 @@
      <%= f.submit "Save", class: 'btn btn-success' %>
    </div>
 <% end %>
-
-<!-- <address>
-  <div class="form-group">
-    <label for="Address" -->

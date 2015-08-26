@@ -8,25 +8,23 @@
 </head>
 <body>
   <div class="container">
-  <ul>
     <ul class="nav nav-tabs">
-      <li><%= link_to "Property Manager", root_path %></li>
-  </ul>
-      <div class="pull-right user-info">
-        <% if current_user %>
-          <%= image_tag(current_user.avatar.tiny.url) if current_user.avatar? %>
-          Hello <%= link_to (current_user.name || current_user.email), current_user %>!
-            <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
-              <span class="glyphicon glyphicon-user"></span>
-            <% end %>
-            <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
-              <span class="glyphicon glyphicon-log-out"></span>
-            <% end %>
-        <% else %>
-          <%= link_to "Sign In", new_user_session_path %> or
-          <%= link_to "Sign Up", new_user_registration_path %>
-        <% end %>
-      </div>
+        <li><%= link_to "Property Manager", root_path %></li>
+    </ul>
+    <div class="pull-right user-info">
+      <% if current_user %>
+        Hello <%#= link_to (current_user.name || current_user.email), current_user %>!
+          <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
+            <span class="glyphicon glyphicon-user"></span>
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
+            <span class="glyphicon glyphicon-log-out"></span>
+          <% end %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %> or
+        <%= link_to "Sign Up", new_user_registration_path %>
+      <% end %>
+    </div>
 
         <% if flash[:notice] %>
           <div class="alert alert-success">
@@ -45,8 +43,17 @@
           </div>
         <% end %>
 
+    <div class="row">
+      <% if current_user %>
+        <% current_user.properties.each do |prop| %>
+          <ul class="nav nav-tabs">
+            <li> <%= link_to prop.address %> </li>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+    <%= yield %>
   </div>
-<%= yield %>
 
 </body>
 </html>

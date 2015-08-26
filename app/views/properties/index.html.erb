@@ -1,7 +1,9 @@
 <h4> Properties </h4>
 
-<%= render partial: 'form', locals: { property: @property} =%>
+<div class="new-property">
+  <%= render partial: 'form', locals: { property: @property} =%>
+</div>
 
-<%= @properties.each do |p| %>
-  <% p.address %>
-<% end %>
+<div class="js-properties">
+<%= render partial: 'properties', locals: { property: @property} =%>
+</div>
