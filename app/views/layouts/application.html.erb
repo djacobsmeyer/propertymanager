@@ -47,7 +47,8 @@
   <% end %>
 
   <% if current_user %>
-    <%= render "proptenant" %>
+    <%= render "properties/propnavbar" %>
+    <%= render "tenants/tenantnavbar" %>
   <% end %>
 
   <%= yield %>

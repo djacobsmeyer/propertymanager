@@ -1,0 +1,10 @@
+<%= render "tenants/form", locals: {} %>
+
+<address>
+  <strong><%= @property.address %></strong><br>
+  <%= @property.address %><br>
+  <%= @property.city %>, <%= @property.state %> <%= @property.zipcode %><br>
+</address>
+
+<h5> Total Squarefeet: </h5><%= @property.totalsqft %>
+<h5> Mortgage: </h5><%= @property.mortgage %>

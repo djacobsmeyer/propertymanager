@@ -1,0 +1,37 @@
+<h5> Create New Tenant </h5>
+
+<%= form_for [ Tenant.new], remote: true do |f| %>
+  <% if Tenant.errors.any? %>
+     <div class="alert alert-danger">
+       <h4>There are <%= pluralize(tenant.errors.count, "error") %>.</h4>
+       <ul>
+         <% tenant.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+       </ul>
+     </div>
+    <% end %>
+    <%= form_group_tag(tenant.errors[:name]) do %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', placeholder: "Enter Tenant Name" %>
+    <% end %>
+   <%= form_group_tag(tenant.errors[:address]) do %>
+     <%= f.label :address %>
+     <%= f.text_field :address, class: 'form-control', placeholder: "Enter Address" %>
+   <% end %>
+    <div class="form-inline">
+      <%= form_group_tag(tenant.errors[:city]) do %>
+       <%= f.text_field :city, class: 'form-control', placeholder: "Enter City" %>
+      <% end %>
+      <%= form_group_tag(tenant.errors[:state]) do %>
+       <%= f.text_field :state, class: 'form-control', placeholder: "Enter State" %>
+      <% end %>
+    </div>
+   <%= form_group_tag(tenant.errors[:zipcode]) do %>
+     <%= f.text_field :zipcode, class: 'form-control', placeholder: "Enter Zipcode" %>
+   <% end %>
+
+   <div class="form-group">
+     <%= f.submit "Save", class: 'btn btn-success' %>
+   </div>
+<% end %>

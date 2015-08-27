@@ -23,11 +23,15 @@
        <%= f.text_field :state, class: 'form-control', placeholder: "Enter State" %>
       <% end %>
     </div>
-
    <%= form_group_tag(property.errors[:zipcode]) do %>
      <%= f.text_field :zipcode, class: 'form-control', placeholder: "Enter Zipcode" %>
    <% end %>
-
+   <%= form_group_tag(property.errors[:totalsqft]) do %>
+     <%= f.text_field :totalsqft, class: 'form-control', placeholder: "Enter Total Squarefeet" %>
+   <% end %>
+   <%= form_group_tag(property.errors[:mortgage]) do %>
+     <%= f.text_field :mortgage, class: 'form-control', placeholder: "Enter Mortgage" %>
+   <% end %>
    <div class="form-group">
      <%= f.submit "Save", class: 'btn btn-success' %>
    </div>

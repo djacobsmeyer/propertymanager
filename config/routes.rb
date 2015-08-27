@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'tenants/show'
+
   get '/users/:id' => 'users#show', as: 'user'
 
   devise_for :users
