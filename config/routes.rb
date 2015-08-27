@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-  get 'payables/index'
 
-  get 'receivables/index'
-
-  get 'user/show'
-
-  get 'properties/index'
+  get '/users/:id' => 'users#show', as: 'user'
 
   devise_for :users
 
-  resources :properties
+  resources :properties do
+    resources :tenants
+  end
+
+  resources :properties do
+    resources :payables
+    resources :receivables
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

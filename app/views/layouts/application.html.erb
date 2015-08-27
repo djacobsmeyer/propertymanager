@@ -10,50 +10,48 @@
   <div class="container">
     <ul class="nav nav-tabs">
         <li><%= link_to "Property Manager", root_path %></li>
+        <li class="pull-right">
+          <div  class="user-info">
+            <% if current_user %>
+              Hello <%= link_to(current_user.name || current_user.email, user_path(current_user)) %>!
+                <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
+                  <span class="glyphicon glyphicon-user"></span>
+                <% end %>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
+                  <span class="glyphicon glyphicon-log-out"></span>
+                <% end %>
+            <% else %>
+              <%= link_to "Sign In", new_user_session_path %> or
+              <%= link_to "Sign Up", new_user_registration_path %>
+            <% end %>
+          </div>
+        </li>
     </ul>
-    <div class="pull-right user-info">
-      <% if current_user %>
-        Hello <%#= link_to (current_user.name || current_user.email), current_user %>!
-          <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
-            <span class="glyphicon glyphicon-user"></span>
-          <% end %>
-          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
-            <span class="glyphicon glyphicon-log-out"></span>
-          <% end %>
-      <% else %>
-        <%= link_to "Sign In", new_user_session_path %> or
-        <%= link_to "Sign Up", new_user_registration_path %>
-      <% end %>
-    </div>
 
-        <% if flash[:notice] %>
-          <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash[:notice] %>
-          </div>
-        <% elsif flash[:error] %>
-          <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash[:error] %>
-          </div>
-        <% elsif flash[:alert] %>
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash[:alert] %>
-          </div>
-        <% end %>
 
-    <div class="row">
-      <% if current_user %>
-        <% current_user.properties.each do |prop| %>
-          <ul class="nav nav-tabs">
-            <li> <%= link_to prop.address %> </li>
-          </ul>
-        <% end %>
-      <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:notice] %>
     </div>
-    <%= yield %>
-  </div>
+  <% elsif flash[:error] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:error] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <% if current_user %>
+    <%= render "proptenant" %>
+  <% end %>
+
+  <%= yield %>
+</div>
 
 </body>
 </html>

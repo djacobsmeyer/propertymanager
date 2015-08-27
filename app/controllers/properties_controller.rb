@@ -19,10 +19,10 @@ class PropertiesController < ApplicationController
 
   def create
     @user = current_user
-    @property = Property.new(propertyparams)
+    @property = Property.new(property_params)
     @property.user = @user
     @new_property = Property.new
-    
+
     if @property.save
       flash[:notice] = "Made New Property"
     else
@@ -37,7 +37,7 @@ class PropertiesController < ApplicationController
 
   private
 
-  def propertyparams
+  def property_params
     params.require(:property).permit(:address, :city, :state, :zipcode)
   end
 end
