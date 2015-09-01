@@ -10,6 +10,12 @@ class PropertiesController < ApplicationController
   def show
     @user = current_user
     @property = Property.find(params[:id])
+    @tenant = Tenant.new
+    @payables = @property.payables
+    @payable = Payable.new
+    @receivables = @property.receivables
+    @receivable = Receivable.new
+
   end
 
   def new
@@ -22,6 +28,7 @@ class PropertiesController < ApplicationController
     @property = Property.new(property_params)
     @property.user = @user
     @new_property = Property.new
+    @properties = Property.all
 
     if @property.save
       flash[:notice] = "Made New Property"

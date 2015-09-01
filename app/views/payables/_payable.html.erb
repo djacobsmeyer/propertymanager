@@ -1,0 +1,11 @@
+<div class="container">
+  <h5>Payables</h5>
+  <% @payables.each do |pay| %>
+    <ul class="list-inline">
+      <li><%= pay.date %></li>
+      <li><%= pay.vendor %></li>
+      <li><%= pay.amount %></li>
+      <li><%= pay.duedate %></li>
+    </ul>
+  <% end %>
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+  <h5>Receivables</h5>
+  <% @receivables.each do |rec| %>
+    <ul class="list-inline">
+      <li><%= rec.date %></li>
+      <li><%= rec.payer %></li>
+      <li><%= rec.amount %></li>
+      <li><%= rec.duedate %></li>
+    </ul>
+  <% end %>
+</div>

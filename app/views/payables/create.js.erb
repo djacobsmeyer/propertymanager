@@ -1,0 +1,6 @@
+<% if @payable.valid? %>
+   $('.js-payables').prepend("<%= escape_javascript(render(@payable)) %>");
+   $('.new-payable').html("<%= escape_javascript(render partial: 'payables/form', locals: { property: @property, payable: @new_payable }) %>");
+ <% else %>
+   $('.new-payable').html("<%= escape_javascript(render partial: 'payables/form', locals: { property: @property, payable: @payable }) %>");
+ <% end %>

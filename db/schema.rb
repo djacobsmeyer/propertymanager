@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826225005) do
+ActiveRecord::Schema.define(version: 20150901163415) do
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "receivable_id"
+    t.string   "itemname"
+    t.text     "description"
+    t.integer  "value"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "line_items", ["receivable_id"], name: "index_line_items_on_receivable_id"
 
   create_table "payables", force: :cascade do |t|
     t.integer  "property_id"
@@ -35,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150826225005) do
     t.integer  "mortgage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "company"
   end
 
   add_index "properties", ["user_id"], name: "index_properties_on_user_id"

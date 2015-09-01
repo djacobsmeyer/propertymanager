@@ -1,0 +1,35 @@
+<div class="container">
+  <h5> Enter New Receivable </h5>
+  <%= form_for [ @property, Receivable.new], remote: true do |f| %>
+    <% if @receivable.errors.any? %>
+       <div class="alert alert-danger">
+         <h4>There are <%= pluralize(@receivable.errors.count, "error") %>.</h4>
+         <ul>
+           <% @receivable.errors.full_messages.each do |msg| %>
+             <li><%= msg %></li>
+           <% end %>
+         </ul>
+       </div>
+      <% end %>
+      <ul class="list-inline">
+        <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
+              <%= f.label :payer %>
+              <%= f.text_field :payer, class: 'form-control input-sm', placeholder: "Enter Payer" %>
+            <% end %></li>
+        <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
+              <%= f.text_field :amount, class: 'form-control input-sm', placeholder: "Enter Amount" %>
+            <% end %>
+        </li>
+        <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
+             <%= f.text_field :date, class: 'form-control input-sm', placeholder: "Enter Date" %>
+            <% end %></li>
+        <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
+             <%= f.text_field :duedate, class: 'form-control input-sm', placeholder: "Enter Due Date" %>
+           <% end %>
+        </li>
+      </ul>
+     <div class="form-group">
+       <%= f.submit "Save", class: 'btn btn-success btn-sm' %>
+     </div>
+  <% end %>
+</div>

@@ -1,10 +1,45 @@
-<%= render "tenants/form", locals: {} %>
+<div class="row, container">
+  <div class="container, col-sm-4">
+    <address>
+      <strong><%= @property.address %></strong><br>
+      <%= @property.address %><br>
+      <%= @property.city %>, <%= @property.state %> <%= @property.zipcode %><br>
+    </address>
+  </div>
+  <div class="container, col-sm-4">
+    <ul class="list-inline">
+      <li><h5> Total Squarefeet: </h5><%= @property.totalsqft %>sqft</li>
+      <li><h5> Mortgage: </h5>$<%= @property.mortgage %></li>
+    </ul>
+  </div>
+  <div class="new-tenants">
+    <%= render "tenants/form", locals: {property: @property, tenant: @tenant } %>
+  </div>
+</div>
 
-<address>
-  <strong><%= @property.address %></strong><br>
-  <%= @property.address %><br>
-  <%= @property.city %>, <%= @property.state %> <%= @property.zipcode %><br>
-</address>
-
-<h5> Total Squarefeet: </h5><%= @property.totalsqft %>
-<h5> Mortgage: </h5><%= @property.mortgage %>
+  <div class="row, container, col-sm-8">
+   <div class="tabbable tabs-left">
+     <ul class="nav nav-tabs">
+       <li class="active"><a href="#payables" data-toggle="tab">Payables</a></li>
+       <li><a href="#receivables" data-toggle="tab">Receivables</a></li>
+     </ul>
+     <div class="tab-content">
+       <div class="tab-pane active" id="payables">
+         <div class="new-payable">
+           <%= render "payables/form", locals: {property: @property, payable: @payable } %>
+         </div>
+         <div class="js-payables">
+           <%= render "payables/payable", locals: { payables: @payables } %>
+         </div>
+       </div>
+       <div class="tab-pane" id="receivables">
+         <div class="new-receivable">
+           <%= render "receivables/form", locals: {property: @property, receivable: @receivable } %>
+         </div>
+         <div class="js-receivables">
+           <%= render "receivables/receivable", locals: { receivables: @receivables } %>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

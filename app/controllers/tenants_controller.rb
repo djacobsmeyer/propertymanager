@@ -1,8 +1,9 @@
 class TenantsController < ApplicationController
+
   def show
-    @property = Property.find(params[:id])
     @tenant = Tenant.find(params[:id])
     @tenant.property = @property
+    @property = Property.find(params[:property_id])
   end
 
   def new
@@ -11,11 +12,12 @@ class TenantsController < ApplicationController
   end
 
   def create
-    @property = Property.find(params[:id])
-    @tenant = Tenant.new
+    @property = Property.find(params[:property_id])
+    @tenant = Tenant.new(tenant_params)
     @tenant.property = @property
-    @newtenant = Tenant.new
-    if tenant.save
+    @new_tenant = Tenant.new
+
+    if @tenant.save
       flash[:notice] = "Made New Tenant"
     else
       flash[:error] = "Something went wrong"
@@ -32,5 +34,4 @@ class TenantsController < ApplicationController
   def tenant_params
     params.require(:tenant).permit(:name, :address, :city, :state, :zipcode, :leasestart, :leaseend)
   end
-end
 end

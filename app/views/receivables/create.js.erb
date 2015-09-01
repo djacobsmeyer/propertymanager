@@ -1,0 +1,6 @@
+<% if @receivable.valid? %>
+   $('.js-receivables').prepend("<%= escape_javascript(render(@receivable)) %>");
+   $('.new-receivable').html("<%= escape_javascript(render partial: 'receivables/form', locals: { property: @property, receivable: @new_receivable }) %>");
+ <% else %>
+   $('.new-receivable').html("<%= escape_javascript(render partial: 'receivables/form', locals: { property: @property, receivable: @receivable }) %>");
+ <% end %>

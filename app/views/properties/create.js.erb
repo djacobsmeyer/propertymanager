@@ -1,6 +1,6 @@
 <% if @property.valid? %>
-   $('.js-properties').prepend("<%= escape_javascript(render(@property)) %>");
-   $('.new-property').html("<%= escape_javascript(render partial: 'property/form', locals: { property: @new_property }) %>");
+   $('#prop-nav').prepend("<li><a href='#'><%= @property.address %></a></li>");
+   $('.new-property').html("<%= escape_javascript(render partial: 'properties/form', locals: { property: @new_property }) %>");
  <% else %>
-   $('.new-property').html("<%= escape_javascript(render partial: 'property/form', locals: { property: @property }) %>");
+   $('.new-property').html("<%= escape_javascript(render partial: 'properties/form', locals: { property: @property }) %>");
  <% end %>
