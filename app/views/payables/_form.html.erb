@@ -21,10 +21,12 @@
             <% end %>
         </li>
         <li><%= form_group_tag(@payable.errors[:vendor]) do %>
-             <%= f.text_field :date, class: 'form-control input-sm', placeholder: "Enter Date" %>
+              <%= f.label :date %>
+              <%= f.date_select :date, class: 'form-control input-sm', placeholder: "Enter Date" %>
             <% end %></li>
         <li><%= form_group_tag(@payable.errors[:vendor]) do %>
-             <%= f.text_field :duedate, class: 'form-control input-sm', placeholder: "Enter Due Date" %>
+              <%= f.label :duedate %>
+              <%= f.date_select :duedate, class: 'form-control input-sm', placeholder: "Enter Due Date" %>
            <% end %>
         </li>
       </ul>

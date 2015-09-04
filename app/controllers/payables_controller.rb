@@ -3,6 +3,12 @@ class PayablesController < ApplicationController
     @payables = Payable.all
   end
 
+  def show
+    @property = Property.find(params[:property_id])
+    @payable = Payable.find(params[:id])
+    @payables = Payable.where(vendor: @payable.vendor)
+  end
+
   def new
     @property = Property.find(params[:id])
     @payable = Payable.new(payable_params)
@@ -27,6 +33,18 @@ class PayablesController < ApplicationController
     end
   end
 
+  def destroy
+    @property = Property.find(params[:property_id])
+    @payable = Payable.find(params[:id])
+
+    if @payable.destroy
+      flash[:notice] = "Payable Deleted"
+      redirect_to @property
+    else
+      flash[:error] = "Something went wrong"
+      render :show
+    end
+  end
   private
 
   def payable_params

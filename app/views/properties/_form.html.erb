@@ -1,7 +1,5 @@
-<div class="container, col-md-6">
-<h5> Create New Property </h5>
 
-<%= form_for [ Property.new], remote: true do |f| %>
+<%= form_for [ @property], remote: true do |f| %>
   <% if property.errors.any? %>
      <div class="alert alert-danger">
        <h4>There are <%= pluralize(property.errors.count, "error") %>.</h4>
@@ -11,6 +9,10 @@
          <% end %>
        </ul>
      </div>
+    <% end %>
+    <%= form_group_tag(property.errors[:company]) do %>
+      <%= f.label :company %>
+      <%= f.text_field :company, class: 'form-control', placeholder: "Enter Company" %>
     <% end %>
    <%= form_group_tag(property.errors[:address]) do %>
      <%= f.label :address %>
@@ -37,4 +39,3 @@
      <%= f.submit "Save", class: 'btn btn-success' %>
    </div>
 <% end %>
-</div>

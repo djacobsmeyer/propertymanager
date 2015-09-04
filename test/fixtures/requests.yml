@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tenant_id: 
+  title: MyString
+  description: MyText
+  completed: false
+
+two:
+  tenant_id: 
+  title: MyString
+  description: MyText
+  completed: false

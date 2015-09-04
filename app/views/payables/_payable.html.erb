@@ -1,11 +1,14 @@
 <div class="container">
-  <h5>Payables</h5>
+  <h3>Payables</h3>
   <% @payables.each do |pay| %>
-    <ul class="list-inline">
-      <li><%= pay.date %></li>
-      <li><%= pay.vendor %></li>
-      <li><%= pay.amount %></li>
-      <li><%= pay.duedate %></li>
+      <div class="list-group">
+        <!-- <a href="" class="list-group-item active"> -->
+          <%= link_to  property_payable_path(pay.property, pay) do %>
+            <h4 class="list-group-item-heading"><%= pay.vendor %>, <%= pay.date %></h4>
+            <p class="list-group-item-text">$<%= pay.amount %> Due on: <%= pay.duedate %></p>
+          <% end %>
+        <!-- </a> -->
+      </div>
     </ul>
   <% end %>
 </div>

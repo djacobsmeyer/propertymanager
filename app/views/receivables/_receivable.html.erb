@@ -1,11 +1,12 @@
 <div class="container">
-  <h5>Receivables</h5>
+  <h3>Receivables</h3>
   <% @receivables.each do |rec| %>
-    <ul class="list-inline">
-      <li><%= rec.date %></li>
-      <li><%= rec.payer %></li>
-      <li><%= rec.amount %></li>
-      <li><%= rec.duedate %></li>
+      <div class="list-group">
+        <%= link_to property_receivable_path(rec.property, rec) do %>
+          <h4 class="list-group-item-heading"><%= rec.payer %>, <%= rec.date %></h4>
+          <p class="list-group-item-text">$<%= rec.amount %> Due on: <%= rec.duedate %></p>
+        <% end %>
+      </div>
     </ul>
   <% end %>
 </div>

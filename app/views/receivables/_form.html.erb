@@ -15,16 +15,20 @@
         <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
               <%= f.label :payer %>
               <%= f.text_field :payer, class: 'form-control input-sm', placeholder: "Enter Payer" %>
-            <% end %></li>
+            <% end %>
+        </li>
         <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
               <%= f.text_field :amount, class: 'form-control input-sm', placeholder: "Enter Amount" %>
             <% end %>
         </li>
         <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
-             <%= f.text_field :date, class: 'form-control input-sm', placeholder: "Enter Date" %>
-            <% end %></li>
+              <%= f.label :date %>
+              <%= f.date_select :date, class: 'form-control input-md', placeholder: "Enter Date" %>
+            <% end %>
+        </li>
         <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
-             <%= f.text_field :duedate, class: 'form-control input-sm', placeholder: "Enter Due Date" %>
+              <%= f.label :duedate %>
+              <%= f.text_field :duedate, class: 'form-control input-md', placeholder: "Enter Due Date" %>
            <% end %>
         </li>
       </ul>

@@ -1,0 +1,32 @@
+<!-- show current payable  -->
+<div class="container, col-md-7">
+  <ul class="list-inline">
+    <li><h3><%= @receivable.payer %></h3></li>
+    <li><%= @receivable.date %></li>
+    <li>
+      <%= link_to [@property, @receivable], method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this receivable?' } do %>
+        <i class="glyphicon glyphicon-trash"> </i>
+      <% end %>
+    </li>
+  </ul>
+  <ul>
+    <% @receivable.line_items.each do |li| %>
+      <ul class="list-inline">
+        <li><%= li.itemname %></li>
+        <li><%= li.description %></li>
+        <li><%= li.value %></li>
+      </ul>
+    <% end %>
+  </ul>
+  $<%= @receivable.amount %> is due on <%= @receivable.duedate %>.
+</div>
+<!-- show payable history for that vendor -->
+<div class="container, col-md-5">
+  <h3>Receivable History for <%= @property.address %></h3>
+  <% @receivables.each do |rec| %>
+      <div class="list-group">
+          <h4 class="list-group-item-heading"><%= rec.payer %>, <%= rec.date %></h4>
+          <p class="list-group-item-text">$<%= rec.amount %> Due on: <%= rec.duedate %></p>
+      </div>
+  <% end %>
+</div>

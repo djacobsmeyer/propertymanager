@@ -1,0 +1,24 @@
+<!-- show current payable  -->
+<div class="container, col-md-7">
+  <ul class="list-inline">
+    <li><h3><%= @payable.vendor %></h3></li>
+    <li><%= @payable.date %></li>
+    <li>
+      <%= link_to [@property, @payable], method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this payable?' } do %>
+        <i class="glyphicon glyphicon-trash"> </i>
+      <% end %>
+    </li>
+  </ul>
+  $<%= @payable.amount %> is due on <%= @payable.duedate %>.
+</div>
+<!-- show payable history for that vendor -->
+<div class="container, col-md-5">
+  <h3><%= @property.address %> Payable History</h3>
+  <% @payables.each do |pay| %>
+      <div class="list-group">
+          <h4 class="list-group-item-heading"><%= pay.vendor %>, <%= pay.date %></h4>
+          <p class="list-group-item-text">$<%= pay.amount %> Due on: <%= pay.duedate %></p>
+      </div>
+    </ul>
+  <% end %>
+</div>

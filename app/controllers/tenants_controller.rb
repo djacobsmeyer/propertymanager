@@ -4,6 +4,8 @@ class TenantsController < ApplicationController
     @tenant = Tenant.find(params[:id])
     @tenant.property = @property
     @property = Property.find(params[:property_id])
+    @request = @tenant.request
+    @requests = Request.where(tenant: @request.tenant)
   end
 
   def new

@@ -1,9 +1,10 @@
+<div class="container, col-md-6">
+<h5> Create New Property </h5>
+  <div class="new-property">
+    <%= render partial: 'form', locals: { property: @property} =%>
+  </div>
 
-
-<div class="new-property">
-  <%= render partial: 'form', locals: { property: @property} =%>
-</div>
-
-<div class="js-properties">
-<%= render partial: 'properties', locals: { property: @property} =%>
+  <div class="js-properties">
+    <%= render partial: 'properties', locals: { property: @property} =%>
+  </div>
 </div>

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'tenants/show'
 
   get '/users/:id' => 'users#show', as: 'user'
 
@@ -16,6 +15,14 @@ Rails.application.routes.draw do
     resources :payables
     resources :receivables
   end
+
+
+  namespace :tenants do
+    resources :bills
+  end
+
+
+  get 'tenants/show'
 
   root 'properties#index'
 

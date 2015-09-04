@@ -31,6 +31,7 @@ users = User.all
 
   30.times do
     tenant = Tenant.create(
+      user:       users.sample,
       property:   properties.sample,
       name:       Faker::Company.name,
       address:    Faker::Address.street_address,
@@ -41,6 +42,8 @@ users = User.all
       leaseend:   Faker::Date.forward(1000)
     )
   end
+
+  tenants = Tenant.all
 
   40.times do
     payable = Payable.create(
@@ -53,12 +56,32 @@ users = User.all
   end
   payables = Payable.all
 
-  35.times do
+  100.times do
     receivable = Receivable.create(
       property:   properties.sample,
-      payer:      Faker::Company.name,
+      payer:      tenants.sample,
       amount:     Faker::Number.decimal(2),
       date:       Faker::Date.backward(50),
       duedate:    Faker::Date.forward(100)
+    )
+  end
+
+  receivables = Receivable.all
+
+  150.times do
+    line_item = LineItem.create(
+      receivable: receivables.sample,
+      itemname:   "Lease Payment" || "Utilities",
+      description: "description text",
+      value:      Faker::Number.decimal(3)
+    )
+  end
+
+  75.times do
+    request = Request.create(
+      tenant:     tenants.sample,
+      title:      Faker::Lorem.sentence,
+      description: Faker::Lorem.sentences,
+      completed:   false
     )
   end

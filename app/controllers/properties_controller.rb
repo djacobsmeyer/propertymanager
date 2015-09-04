@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  layout "manager"
   before_action :authenticate_user!
 
   def index
@@ -39,6 +40,30 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+    end
+  end
+
+  def update
+    @property = Property.find(params[:id])
+
+    if @property.update_attributes(params)
+      flash[:notice] = "Property Updated"
+      redirect_to @properties
+    else
+      flash[:error] = "Something went wrong"
+      render :show
+    end
+  end
+
+  def destroy
+    @property = Property.find(params[:id])
+
+    if @property.destroy
+      flash[:notice] = "Property Deleted"
+      redirect_to :properties
+    else
+      flash[:error] = "Something went wrong"
+      render :show
     end
   end
 
