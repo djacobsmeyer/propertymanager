@@ -46,15 +46,6 @@
     </div>
   <% end %>
 
-  <% if current_user %>
-    <div class="js-properties">
-      <%= render partial: "properties/propnavbar" %>
-    </div>
-    <div class="js-tenants">
-      <%= render partial: "tenants/tenantnavbar" %>
-    </div>
-  <% end %>
-
   <%= yield %>
 </div>
 

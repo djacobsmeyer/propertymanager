@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'requests/show'
+
+  get 'requests/create'
+
+  get 'requests/update'
+
+  get 'requests/destroy'
+
   devise_for :users
 
 
@@ -21,6 +29,7 @@ Rails.application.routes.draw do
     resources :bills
   end
 
+  resources :charges, only: [:new, :create]
 
   get 'tenants/show'
 

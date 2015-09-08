@@ -1,0 +1,12 @@
+<div class="container, col-md-6">
+  <% @requests.each do |req| %>
+    <ul class="row">
+      <li><%= req.title %>
+        <div class=" form-group, pull-right">
+          <% class: 'checkbox' do %>
+          <%= req.check_box :complete %></div>
+        </li>
+      <li><%= req.description %></li>
+    </ul>
+  <% end %>
+</div>

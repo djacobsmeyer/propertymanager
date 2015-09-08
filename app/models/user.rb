@@ -7,4 +7,13 @@ class User < ActiveRecord::Base
   has_many :properties
 
   has_many :tenants, through: :properties
+
+  def manager?
+    :type == "Manager"
+  end
+
+  def tenant?
+    :type == "Tenant"
+  end
+
 end

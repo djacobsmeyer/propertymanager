@@ -1,2 +1,24 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
+<div class="row, container, col-sm-8">
+ <div class="tabbable tabs-left">
+   <ul class="nav nav-tabs">
+     <li class="active"><a href="#leasedetails" data-toggle="tab">Lease Details</a></li>
+     <li><a href="#payments" data-toggle="tab">Payments</a></li>
+     <li><a href="#requests" data-toggle="tab">Requests</a></li>
+   </ul>
+   <div class="tab-content">
+     <div class="tab-pane active" id="leasedetails">
+       <%#= @receivable.tenant.inspect %>
+     </div>
+     <div class="tab-pane" id="payments">
+       <% @receivables.each do |rec| %>
+          <div class="list-group">
+            <h4 class="list-group-item-heading"><%= rec.payer %>, <%= rec.date %></h4>
+            <p class="list-group-item-text">$<%= rec.amount %> Due on: <%= rec.duedate %></p>
+          </div>
+        <% end %>
+     </div>
+     <div class="tab-pane" id="requests">
+       <%= render partial: 'requests/requests' %>
+     </div>
+   </div>
+ </div>

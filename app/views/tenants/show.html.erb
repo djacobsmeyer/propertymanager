@@ -7,11 +7,5 @@
   Lease Start <%= @tenant.leasestart %><br>
   Lease End <%= @tenant.leaseend %><br>
 </div>
-<div class="container, col-md-6">
-  <% @requests.each do |req| %>
-    <ul class="row">
-      <li><%= req.title %><div class="pull-right"><%= req.completed %></div></li>
-      <li><%= req.description %></li>
-    </ul>
-  <% end %>
-</div>
+
+<%= render partial: "requests/requests" %>
