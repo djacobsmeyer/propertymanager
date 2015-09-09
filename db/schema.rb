@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903183721) do
+ActiveRecord::Schema.define(version: 20150909015047) do
+
+  create_table "amounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "receivable_id"
@@ -45,9 +50,13 @@ ActiveRecord::Schema.define(version: 20150903183721) do
     t.integer  "zipcode"
     t.integer  "totalsqft"
     t.integer  "mortgage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "company"
+    t.string   "billingaddress"
+    t.string   "billingcity"
+    t.string   "billingstate"
+    t.integer  "billingzipcode"
   end
 
   add_index "properties", ["user_id"], name: "index_properties_on_user_id"

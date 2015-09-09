@@ -3,7 +3,7 @@
     <ul class="list-inline">
       <li>
         <address>
-          <strong><%= @property.address %></strong><br>
+          <strong><%= @property.company %></strong><br>
           <%= @property.address %><br>
           <%= @property.city %>, <%= @property.state %> <%= @property.zipcode %><br>
         </address>
@@ -17,6 +17,12 @@
         <%= link_to [@property], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this property?' } do %>
           <i class="glyphicon glyphicon-trash"> </i>
         <% end %>
+      </li>
+      <li>"Billing Address"
+        <address>
+          <%= @property.billingaddress %><br>
+          <%= @property.billingcity %>, <%= @property.billingstate %> <%= @property.billingzipcode %><br>
+        </address>
       </li>
     </ul>
   </div>

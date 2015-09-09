@@ -23,8 +23,12 @@ users = User.all
       city:       Faker::Address.city,
       state:      Faker::Address.state,
       zipcode:    Faker::Address.zip_code,
-      totalsqft:  10000,
-      mortgage:   1600
+      totalsqft:  10000 || 5000 || 60000,
+      mortgage:   1600,
+      billingaddress:    Faker::Address.street_address,
+      billingcity:       Faker::Address.city,
+      billingstate:      Faker::Address.state,
+      billingzipcode:    Faker::Address.zip_code,
     )
   end
   properties = Property.all
@@ -42,7 +46,6 @@ users = User.all
       leaseend:   Faker::Date.forward(1000)
     )
   end
-
   tenants = Tenant.all
 
   40.times do

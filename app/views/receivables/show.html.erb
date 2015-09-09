@@ -1,6 +1,15 @@
 <!-- show current payable  -->
-<div class="container, col-md-7">
+<div class="container">
+  <h2> <%= @property.company %> </h2>
   <ul class="list-inline">
+    <li> Remit to:
+      <address>
+        <strong> <%= @property.company %> </strong></br>
+        <%= @property.billingaddress %></br>
+        <%= @property.billingcity %>, <%= @property.billingstate %>
+        <%= @property.billingzipcode %></br>
+      </address>
+    </li>
     <li><h3><%= @receivable.payer %></h3></li>
     <li><%= @receivable.date %></li>
     <li>
