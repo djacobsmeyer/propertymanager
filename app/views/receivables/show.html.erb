@@ -17,6 +17,11 @@
         <i class="glyphicon glyphicon-trash"> </i>
       <% end %>
     </li>
+    <li>
+      <%= link_to [Prawn.create], method: :post, class: 'btn btn-default btn-sm', :target => "_new", data: { confirm: 'This will generate a PDF Invoice of the current Receivable' } do %>
+        <i class="glyphicon glyphicon-save-file"> </i>
+      <% end %>
+    </li>
   </ul>
   <ul>
     <% @receivable.line_items.each do |li| %>

@@ -16,6 +16,14 @@ user.skip_confirmation!
 user.save!
 users = User.all
 
+tenantuser = Tenant.new(
+    name:     'Tenant User',
+    email:    'tenant@example.com',
+    password: 'helloworld',
+    property_id: 1,
+)
+tenantuser.save!
+
   5.times do
     property = Property.create(
       user:       users.sample,
@@ -35,7 +43,8 @@ users = User.all
 
   30.times do
     tenant = Tenant.create(
-      user:       users.sample,
+      email:      Faker::Internet.email,
+      password:   Faker::Internet.password,
       property:   properties.sample,
       name:       Faker::Company.name,
       address:    Faker::Address.street_address,

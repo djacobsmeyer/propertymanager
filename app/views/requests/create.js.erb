@@ -1,0 +1,6 @@
+<% if @request.valid? %>
+   $('.js-request').prepend("<%= escape_javascript(render(@request)) %>");
+   $('.new-request').html("<%= escape_javascript(render partial: 'requests/form', locals: { tenant: @tenant, request: @new_request }) %>");
+ <% else %>
+   $('.new-request').html("<%= escape_javascript(render partial: 'requests/form', locals: { tenant: @tenant, request: @request }) %>");
+ <% end %>

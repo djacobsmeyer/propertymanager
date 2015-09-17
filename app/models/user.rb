@@ -8,12 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :tenants, through: :properties
 
-  def manager?
-    :type == "Manager"
-  end
+  has_many :pins
+   validates :name, presence: true
 
-  def tenant?
-    :type == "Tenant"
-  end
 
 end

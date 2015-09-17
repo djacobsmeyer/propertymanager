@@ -1,12 +1,24 @@
+<h3> Request History </h3>
 <div class="container, col-md-6">
   <% @requests.each do |req| %>
     <ul class="row">
       <li><%= req.title %>
         <div class=" form-group, pull-right">
-          <% class: 'checkbox' do %>
-          <%= req.check_box :complete %></div>
-        </li>
+            <input class="effing-checkbox" data-id=<%= req.id %> type="checkbox" <%= "checked" if req.completed %>/>
+        </div>
+      </li>
       <li><%= req.description %></li>
     </ul>
   <% end %>
 </div>
+
+
+<script>
+$(".effing-checkbox").click(function(){
+  req_id = $(this).data('id')
+
+  $.ajax("/requests/"+req_id, {method: "PUT"}, {request: {completed: "who knows"}}, function(){
+
+  })
+})
+</script>

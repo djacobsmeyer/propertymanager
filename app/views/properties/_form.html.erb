@@ -1,5 +1,5 @@
 
-<%= form_for [ @property], remote: true do |f| %>
+<%= form_for [ @property] do |f| %>
   <% if property.errors.any? %>
      <div class="alert alert-danger">
        <h4>There are <%= pluralize(property.errors.count, "error") %>.</h4>

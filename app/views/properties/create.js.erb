@@ -1,6 +1,0 @@
-<% if @property.valid? %>
-   $('#prop-nav').prepend("<li><a href='#'><%= @property.address %></a></li>");
-   $('.new-property').html("<%= escape_javascript(render partial: 'properties/form', locals: { property: @new_property }) %>");
- <% else %>
-   $('.new-property').html("<%= escape_javascript(render partial: 'properties/form', locals: { property: @property }) %>");
- <% end %>

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @receivable = Receivable.find(params[:id])
     @receivables = Receivable.where(payer: @receivable.payer)
-    @tenant = current_user.tenant
+    @tenant = @user.tenant
     @requests = @tenant.requests
   end
 end

@@ -1,14 +1,24 @@
 Rails.application.routes.draw do
 
-  get 'requests/show'
 
-  get 'requests/create'
+  resources :invitations, only: :create
 
-  get 'requests/update'
+  devise_for :tenants
 
-  get 'requests/destroy'
+  authenticated :user do
+    root :to => "properties#index", as: :user_root
+  end
 
-  devise_for :users
+  authenticated :tenant do
+    root :to => "tenants#show", as: :tenant_root
+  end
+  resources :tenants
+
+  resources :requests
+
+  devise_for :users, controllers: {
+    registrations: "my_devise/registrations"
+  }
 
 
   get '/users/:id' => 'users#show', as: 'user'
@@ -16,7 +26,7 @@ Rails.application.routes.draw do
 
 
   resources :properties do
-    resources :tenants
+    resources :tenants, controller: "properties/tenants"
   end
 
   resources :properties do
@@ -24,14 +34,12 @@ Rails.application.routes.draw do
     resources :receivables
   end
 
-
-  namespace :tenants do
-    resources :bills
-  end
+  #
+  # namespace :tenants do
+  #   resources :bills
+  # end
 
   resources :charges, only: [:new, :create]
-
-  get 'tenants/show'
 
   root 'properties#index'
 

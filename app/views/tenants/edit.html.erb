@@ -1,0 +1,39 @@
+<div class="container, col-md-8">
+<h5> Edit Tenant Account </h5>
+
+<%= form_for [ @tenant] do |f| %>
+  <% if @tenant.errors.any? %>
+     <div class="alert alert-danger">
+       <h4>There are <%= pluralize(@tenant.errors.count, "error") %>.</h4>
+       <ul>
+         <% @tenant.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+       </ul>
+     </div>
+    <% end %>
+    <%= form_group_tag(@tenant.errors[:name]) do %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control input-sm', placeholder: "Enter Tenant Name" %>
+    <% end %>
+   <%= form_group_tag(@tenant.errors[:address]) do %>
+     <%= f.label :address %>
+     <%= f.text_field :address, class: 'form-control input-sm', placeholder: "Enter Address" %>
+   <% end %>
+    <div class="form-inline">
+      <%= form_group_tag(@tenant.errors[:city]) do %>
+       <%= f.text_field :city, class: 'form-control input-sm', placeholder: "Enter City" %>
+      <% end %>
+      <%= form_group_tag(@tenant.errors[:state]) do %>
+       <%= f.text_field :state, class: 'form-control input-sm', placeholder: "Enter State" %>
+      <% end %>
+    </div>
+   <%= form_group_tag(@tenant.errors[:zipcode]) do %>
+     <%= f.text_field :zipcode, class: 'form-control input-sm', placeholder: "Enter Zipcode" %>
+   <% end %>
+
+   <div class="form-group">
+     <%= f.submit "Save", class: 'btn btn-success btn-sm' %>
+   </div>
+<% end %>
+</div>

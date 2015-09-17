@@ -1,0 +1,12 @@
+<% if current_tenant %>
+  Hello <%= link_to(current_tenant.name || current_tenant.email, tenant_path(current_tenant)) %>!
+    <%= link_to edit_tenant_registration_path, class: 'btn btn-primary btn-sm' do %>
+      <span class="glyphicon glyphicon-user"></span>
+    <% end %>
+    <%= link_to destroy_tenant_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
+      <span class="glyphicon glyphicon-log-out"></span>
+    <% end %>
+<% elsif !current_user %>
+  <%= link_to "Sign In", new_tenant_session_path %> or
+  <%= link_to "Sign Up", new_tenant_registration_path %>
+<% end %>

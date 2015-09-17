@@ -1,0 +1,68 @@
+<h3> Edit Property Details </h3>
+<%= form_for [ @property] do |f| %>
+  <% if @property.errors.any? %>
+     <div class="alert alert-danger">
+       <h4>There are <%= pluralize(@property.errors.count, "error") %>.</h4>
+       <ul>
+         <% @property.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+       </ul>
+     </div>
+    <% end %>
+  <div class='col-md-6'>
+    <%= form_group_tag(@property.errors[:company]) do %>
+      <%= f.label :company %>
+      <%= f.text_field :company, class: 'form-control', placeholder: "Enter Company" %>
+    <% end %>
+   <%= form_group_tag(@property.errors[:address]) do %>
+     <%= f.label "Physical Address" %>
+     <%= f.text_field :address, class: 'form-control', placeholder: "Enter Address" %>
+   <% end %>
+    <div class="form-inline">
+      <%= form_group_tag(@property.errors[:city]) do %>
+       <%= f.label :city %>
+       <%= f.text_field :city, class: 'form-control', placeholder: "Enter City" %>
+      <% end %>
+      <%= form_group_tag(@property.errors[:state]) do %>
+       <%= f.label :state %>
+       <%= f.text_field :state, class: 'form-control', placeholder: "Enter State" %>
+      <% end %>
+    </div>
+   <%= form_group_tag(@property.errors[:zipcode]) do %>
+     <%= f.label :zipcode %>
+     <%= f.text_field :zipcode, class: 'form-control', placeholder: "Enter Zipcode" %>
+   <% end %>
+ </div>
+ <div class='col-md-6'>
+   <%= form_group_tag(@property.errors[:totalsqft]) do %>
+     <%= f.label :totalsqft %>
+     <%= f.text_field :totalsqft, class: 'form-control', placeholder: "Enter Total Squarefeet" %>
+   <% end %>
+   <%= form_group_tag(@property.errors[:mortgage]) do %>
+     <%= f.label :mortgage %>
+     <%= f.text_field :mortgage, class: 'form-control', placeholder: "Enter Mortgage" %>
+   <% end %>
+   <%= form_group_tag(@property.errors[:billingaddress]) do %>
+     <%= f.label 'Billing Address' %>
+     <%= f.text_field :billingaddress, class: 'form-control', placeholder: "Enter Billing Address" %>
+   <% end %>
+   <div class="form-inline">
+     <%= form_group_tag(@property.errors[:billingcity]) do %>
+      <%= f.label 'City' %>
+      <%= f.text_field :billingcity, class: 'form-control', placeholder: "Enter Billing City" %>
+     <% end %>
+     <%= form_group_tag(@property.errors[:billingstate]) do %>
+      <%= f.label 'State' %>
+      <%= f.text_field :billingstate, class: 'form-control', placeholder: "Enter Billing State" %>
+     <% end %>
+   </div>
+   <%= form_group_tag(@property.errors[:billingzipcode]) do %>
+     <%= f.label 'Zipcode' %>
+     <%= f.text_field :billingzipcode, class: 'form-control', placeholder: "Enter Billing Zipcode" %>
+   <% end %>
+   <div class="form-group">
+     <%= f.submit "Save", class: 'btn btn-success' %>
+   </div>
+ </div>
+<% end %>

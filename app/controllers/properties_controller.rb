@@ -33,25 +33,27 @@ class PropertiesController < ApplicationController
 
     if @property.save
       flash[:notice] = "Made New Property"
+      redirect_to :properties
     else
       flash[:error] = "Something went wrong"
+      render :properties
     end
+  end
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  def edit
+    @property = Property.find(params[:id])
+
   end
 
   def update
     @property = Property.find(params[:id])
 
-    if @property.update_attributes(params)
+    if @property.update_attributes(property_params)
       flash[:notice] = "Property Updated"
-      redirect_to @properties
+      redirect_to @property
     else
       flash[:error] = "Something went wrong"
-      render :show
+      render @property
     end
   end
 
@@ -70,6 +72,6 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:address, :city, :state, :zipcode)
+    params.require(:property).permit(:address, :city, :state, :zipcode, :totalsqft, :mortgage, :billingaddress, :billingcity, :billingstate, :billingzipcode)
   end
 end

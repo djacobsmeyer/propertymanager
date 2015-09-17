@@ -6,4 +6,9 @@ module ApplicationHelper
      content_tag :div, capture(&block), class: 'form-group'
     end
   end
+
+
+  def current_resource_session_stuff
+
+  end
 end

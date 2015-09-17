@@ -1,11 +1,12 @@
 class TenantsController < ApplicationController
+  # TENANT TENANTSCONTROLLER
 
   def show
-    @tenant = Tenant.find(params[:id])
-    @tenant.property = @property
-    @property = Property.find(params[:property_id])
+    #Purpose: show one given tenant's lease details and payment history and request
+    @tenant = current_tenant #Tenant.find(params[:id])
+    @receivables = @tenant.receivables
     @requests = @tenant.requests
-    # @requests = Request.where(tenant: @request.tenant)
+    @request = Request.new
   end
 
   def new
@@ -28,6 +29,23 @@ class TenantsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+    end
+  end
+
+  def edit
+    @tenant = Tenant.find(params[:id])
+
+  end
+
+  def update
+    @tenant = Tenant.find(params[:id])
+
+    if @tenant.update_attributes(tenant_params)
+      flash[:notice] = "Saved Tenant Info"
+      redirect_to :tenant
+    else
+      flash[:error] = "Something went wrong"
+      render :tenant
     end
   end
 

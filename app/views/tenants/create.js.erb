@@ -1,6 +1,0 @@
-<% if @tenant.valid? %>
-   $('#tenant-nav').prepend("<li><a href='#'><%= @tenant.name %></a></li>");
-   $('.new-tenant').html("<%= escape_javascript(render partial: 'tenants/form', locals: { property: @property, tenant: @new_tenant }) %>");
- <% else %>
-   $('.new-tenant').html("<%= escape_javascript(render partial: 'tenants/form', locals: { property: @property, tenant: @tenant }) %>");
- <% end %>

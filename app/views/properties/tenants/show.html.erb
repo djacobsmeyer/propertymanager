@@ -1,0 +1,16 @@
+<div class="container, col-md-6">
+  <address>
+    <strong><%= @tenant.name %></strong><br>
+    <%= @tenant.address %><br>
+    <%= @tenant.city %>, <%= @tenant.state %> <%= @tenant.zipcode %><br>
+  </address>
+
+  Lease Start <%= @tenant.leasestart %><br>
+  Lease End <%= @tenant.leaseend %><br>
+
+  <%= link_to "Send User Invitation Email", invitations_path(tenant_id: @tenant.id), method: :post %>
+
+</div>
+
+
+<%= render partial: "requests/requests" %>

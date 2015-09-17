@@ -1,9 +1,12 @@
+
 <h2>Sign up</h2>
 
 <div class="row">
   <div class="col-md-8">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
+      <%#= f.hidden_field :stripe_card_token %>
+      <input type="hidden" id="token-field" name="user[stripe_card_token]"/>
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: "Enter name" %>
@@ -20,6 +23,43 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Enter password confirmation" %>
       </div>
+
+      <% if @user.customer_id %>
+		  	Credit Card is on File with Stripe
+		  <% else %>
+        <%   @stripe_btn_data = {
+             key: "#{ Rails.configuration.stripe[:publishable_key] }",
+             description: "Account Joining Fee",
+             amount: Amount.default
+           } %>
+
+
+           <a href="#" id="pay">Click to pay stripe </a>
+           <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+           <script>
+
+           $(document).ready(function(){
+              $("#pay").click(function(){
+                opts = {
+                  key: "<%= @stripe_btn_data[:key] %>",
+                  name: "Property Manager",
+                  description: "<%= @stripe_btn_data[:description] %>",
+                  panelLabel: "Attach Your Card",
+                  amount: "<%= @stripe_btn_data[:amount] %>",
+                  token: function(data){
+                    console.log(data)
+                    $("#token-field").val(data.id)
+                  }
+                }
+                StripeCheckout.open(opts)
+              })
+            })
+           </script>
+
+
+
+		  <% end %>
+
       <div class="form-group">
         <%= f.submit "Sign up", class: 'btn btn-success' %>
       </div>
@@ -27,5 +67,8 @@
         <%= render "devise/shared/links" %>
       </div>
     <% end %>
+    <div id='stripe_error' class="alert alert-info" style='display:none'>
+      There was an error while processing your card
+    </div>
   </div>
 </div>

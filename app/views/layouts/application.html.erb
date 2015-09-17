@@ -12,18 +12,8 @@
         <li><%= link_to "Property Manager", root_path %></li>
         <li class="pull-right">
           <div  class="user-info">
-            <% if current_user %>
-              Hello <%= link_to(current_user.name || current_user.email, user_path(current_user)) %>!
-                <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
-                  <span class="glyphicon glyphicon-user"></span>
-                <% end %>
-                <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
-                  <span class="glyphicon glyphicon-log-out"></span>
-                <% end %>
-            <% else %>
-              <%= link_to "Sign In", new_user_session_path %> or
-              <%= link_to "Sign Up", new_user_registration_path %>
-            <% end %>
+            <%= render "shared/user_session_nav" %>
+            <%= render "shared/tenant_session_nav" %>
           </div>
         </li>
     </ul>
@@ -45,7 +35,8 @@
       <%= flash[:alert] %>
     </div>
   <% end %>
-
+  <%= javascript_include_tag "https://js.stripe.com/v1/", type: 'text/javascript' %>
+  <%= javascript_tag "Stripe.publishableKey = '#{Rails.configuration.stripe[:publishable_key]}';", type: 'text/javascript' %>
   <%= yield %>
 </div>
 
