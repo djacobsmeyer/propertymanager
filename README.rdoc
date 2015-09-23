@@ -1,28 +1,11 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Property Manager is a capstone project for the Bloc - Rails Backend Development Course
 
-Things you may want to cover:
+It's purpose is to give Real Estate Landlords and Managers a platform to manage tenants, payables, receivables as well as give the tenants themselves a portal for payment history and a direct line of communication for requests.
 
-* Ruby version
+This project was written using Rails 4.2.3 and Ruby 2.2.1.
 
-* System dependencies
+While the app is ready to be launched and run as its own business, there is already a V2.0 in the works for a better user experience and additional features for use.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Stripe is currently handling transactions. 
