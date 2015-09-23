@@ -28,7 +28,7 @@
         </li>
         <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
               <%= f.label :duedate %>
-              <%= f.text_field :duedate, class: 'form-control input-md', placeholder: "Enter Due Date" %>
+              <%= f.date_select :duedate, class: 'form-control input-md', placeholder: "Enter Due Date" %>
            <% end %>
         </li>
       </ul>
