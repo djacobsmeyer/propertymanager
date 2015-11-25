@@ -27,6 +27,7 @@ class Properties::TenantsController < ApplicationController
     @tenant.property = @property
     @new_tenant = Tenant.new
 
+    # upon creation of a new tenant, an invitation will be emailed to them to sign up for a tenant account to login to the tenant portal
     if @tenant.save
       TenantMailer.invite_mailer(@tenant).deliver_now
       flash[:notice] = "Made New Tenant"
