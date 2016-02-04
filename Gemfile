@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'ruby', '2.2.4'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'figaro', '1.0'
