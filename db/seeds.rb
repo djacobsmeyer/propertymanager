@@ -27,6 +27,7 @@ tenantuser.save!
   5.times do
     property = Property.create(
       user:       users.sample,
+      company:       Faker::Company.name,
       address:    Faker::Address.street_address,
       city:       Faker::Address.city,
       state:      Faker::Address.state,
@@ -71,7 +72,7 @@ tenantuser.save!
   100.times do
     receivable = Receivable.create(
       property:   properties.sample,
-      payer:      tenants.sample,
+      payer:      tenants.sample.name,
       amount:     Faker::Number.decimal(2),
       date:       Faker::Date.backward(50),
       duedate:    Faker::Date.forward(100)

@@ -31,16 +31,21 @@
        </ul>
      </div>
      <div class="tab-pane" id="payments">
+       <h3>Payment History</h3>
        <% @receivables.each do |rec| %>
-          <div class="list-group">
+          <div class="list-group, container">
             <h4 class="list-group-item-heading"><%= current_tenant.name %>, <%= rec.date %></h4>
             <p class="list-group-item-text">$<%= rec.amount %> Due on: <%= rec.duedate %></p>
           </div>
         <% end %>
      </div>
      <div class="tab-pane" id="requests">
-       <%= render partial: 'requests/form' %>
-       <%= render partial: 'requests/requests' %>
+       <div class="container">
+         <%= render partial: 'requests/form' %>
+       </div>
+       <div class="container">
+         <%= render partial: 'requests/requests' %>
+       </div>
      </div>
    </div>
  </div>

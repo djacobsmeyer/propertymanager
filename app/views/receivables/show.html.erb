@@ -2,25 +2,35 @@
 <div class="container">
   <h2> <%= @property.company %> </h2>
   <ul class="list-inline">
-    <li> Remit to:
-      <address>
-        <strong> <%= @property.company %> </strong></br>
-        <%= @property.billingaddress %></br>
-        <%= @property.billingcity %>, <%= @property.billingstate %>
-        <%= @property.billingzipcode %></br>
-      </address>
-    </li>
-    <li><h3><%= @receivable.payer %></h3></li>
-    <li><%= @receivable.date %></li>
     <li>
-      <%= link_to [@property, @receivable], method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this receivable?' } do %>
-        <i class="glyphicon glyphicon-trash"> </i>
-      <% end %>
+      <div class="">
+        Remit to:
+        <address>
+          <%= @property.company %> </br>
+          <%= @property.billingaddress %></br>
+          <%= @property.billingcity %>, <%= @property.billingstate %>
+          <%= @property.billingzipcode %></br>
+        </address>
+      </div>
+    </li>
+  </br>
+    <li>
+      <div>
+          <h3><%= @receivable.payer %></h3>
+          <%= @receivable.date %>
+      </div>
     </li>
     <li>
-      <%= link_to [Prawn.create], method: :post, class: 'btn btn-default btn-sm', :target => "_new", data: { confirm: 'This will generate a PDF Invoice of the current Receivable' } do %>
-        <i class="glyphicon glyphicon-save-file"> </i>
-      <% end %>
+      <div class="col-md-8 text-align: right">
+        <%= link_to [@property, @receivable], method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure you want to delete this receivable?' } do %>
+          <i class="glyphicon glyphicon-trash"> </i>
+        <% end %>
+      </div>
+      <div class="col-md-8">
+        <%= link_to prawn_index_path, method: :post, class: 'btn btn-default btn-sm', :target => "_new", data: { confirm: 'This will generate a PDF Invoice of the current Receivable' } do %>
+          <i class="glyphicon glyphicon-save-file"> </i>
+        <% end %>
+      </div>
     </li>
   </ul>
   <ul>
@@ -35,7 +45,7 @@
   $<%= @receivable.amount %> is due on <%= @receivable.duedate %>.
 </div>
 <!-- show payable history for that vendor -->
-<div class="container, col-md-5">
+<div class="container, col-md-8">
   <h3>Receivable History for <%= @property.address %></h3>
   <% @receivables.each do |rec| %>
       <div class="list-group">

@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
+  resources :prawn, only: [:create]
+
   root 'properties#index'
 
   # Example of regular route:
