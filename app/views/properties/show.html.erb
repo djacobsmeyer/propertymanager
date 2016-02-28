@@ -1,62 +1,63 @@
-<div class="row, container">
-  <div class="container, col-sm-6">
-    <ul class="list-inline">
-      <li>
-        <address>
-          <strong><%= @property.company %></strong><br>
-          <%= @property.address %><br>
-          <%= @property.city %>, <%= @property.state %> <%= @property.zipcode %><br>
-        </address>
-      </li>
-      <li>
-        <%= link_to [:edit_property], class: 'btn btn-default' do %>
-          <i class="glyphicon glyphicon-pencil"> </i>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to [@property], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this property?' } do %>
-          <i class="glyphicon glyphicon-trash"> </i>
-        <% end %>
-      </li>
-      <li><strong>Billing Address</strong>
-        <address>
-          <%= @property.billingaddress %><br>
-          <%= @property.billingcity %>, <%= @property.billingstate %> <%= @property.billingzipcode %><br>
-        </address>
-      </li>
-      <li><h5> Total Squarefeet: </h5><%= @property.totalsqft %>sqft</li>
-      <li><h5> Mortgage: </h5>$<%= @property.mortgage %></li>
-    </ul>
-  </div>
-  <div class="container, new-tenant, col-sm-6">
-    <%= render "properties/tenants/form", locals: {property: @property, tenant: @tenant } %>
+<div class="container">
+  <div class="row">
+    <div class="side-bar col-xs-pull col-xs-4">
+      <ul>
+        <li>
+          <address>
+            <strong><%= @property.company %></strong><br>
+            <%= @property.address %><br>
+            <%= @property.city %>, <%= @property.state %> <%= @property.zipcode %><br>
+          </address>
+        </li>
+        <li><strong>Billing Address</strong>
+          <address>
+            <%= @property.billingaddress %><br>
+            <%= @property.billingcity %>, <%= @property.billingstate %> <%= @property.billingzipcode %><br>
+          </address>
+        </li>
+        <li><h5> Total Squarefeet: </h5><%= @property.totalsqft %>sqft</li>
+        <li><h5> Mortgage: </h5>$<%= @property.mortgage %></li>
+        <li>
+          <%= link_to [:edit_property], class: 'btn btn-default' do %>
+            <i class="glyphicon glyphicon-pencil"> </i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to [@property], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this property?' } do %>
+            <i class="glyphicon glyphicon-trash"> </i>
+          <% end %>
+        </li>
+      </ul>
+      <div class="new-tenant">
+        <%= render "properties/tenants/form", locals: {property: @property, tenant: @tenant } %>
+      </div>
+    </div>
+    <div class="show-detail col-sm-8">
+     <div class="tabbable tabs-left">
+       <ul class="nav nav-tabs">
+         <li class="active"><a href="#payables" data-toggle="tab">Payables</a></li>
+         <li><a href="#receivables" data-toggle="tab">Receivables</a></li>
+       </ul>
+       <div class="tab-content">
+         <div class="tab-pane active" id="payables">
+           <div class="new-payable">
+             <%= render "payables/form", locals: {property: @property, payable: @payable } %>
+           </div>
+           <div class="js-payables">
+             <%= render "payables/payable", locals: {property: @property, payables: @payables } %>
+           </div>
+         </div>
+         <div class="tab-pane" id="receivables">
+           <div class="new-receivable">
+             <%= render "receivables/form", locals: {property: @property, receivable: @receivable } %>
+           </div>
+           <div class="js-receivables">
+             <%= render "receivables/receivable", locals: { receivables: @receivables } %>
+           </div>
+         </div>
+       </div>
+      </br>
+     </div>
+   </div>
   </div>
 </div>
-
-  <div class="row, container, col-sm-8">
-   <div class="tabbable tabs-left">
-     <ul class="nav nav-tabs">
-       <li class="active"><a href="#payables" data-toggle="tab">Payables</a></li>
-       <li><a href="#receivables" data-toggle="tab">Receivables</a></li>
-     </ul>
-     <div class="tab-content">
-       <div class="tab-pane active" id="payables">
-         <div class="new-payable">
-           <%= render "payables/form", locals: {property: @property, payable: @payable } %>
-         </div>
-         <div class="js-payables">
-           <%= render "payables/payable", locals: {property: @property, payables: @payables } %>
-         </div>
-       </div>
-       <div class="tab-pane" id="receivables">
-         <div class="new-receivable">
-           <%= render "receivables/form", locals: {property: @property, receivable: @receivable } %>
-         </div>
-         <div class="js-receivables">
-           <%= render "receivables/receivable", locals: { receivables: @receivables } %>
-         </div>
-       </div>
-     </div>
-    </br>
-   </div>
- </div>

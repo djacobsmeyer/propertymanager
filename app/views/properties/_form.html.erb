@@ -10,7 +10,7 @@
          </ul>
        </div>
       <% end %>
-    <div class='col-md-6'>
+    <div class='col-md-*'>
       <%= form_group_tag(property.errors[:company]) do %>
         <%= f.label :company %>
         <%= f.text_field :company, class: 'form-control', placeholder: "Enter Company" %>
@@ -31,13 +31,11 @@
        <%= f.text_field :zipcode, class: 'form-control', placeholder: "Enter Zipcode" %>
      <% end %>
    </div>
-   <div class='col-md-6'>
+   <div class='col-md-*'>
      <%= form_group_tag(property.errors[:totalsqft]) do %>
-       <label class="sr-only" for="exampleInputEmail3">Email address</label>
        <%= f.text_field :totalsqft, class: 'form-control', placeholder: "Enter Total Squarefeet" %>
      <% end %>
      <%= form_group_tag(property.errors[:mortgage]) do %>
-       <label class="sr-only" for="exampleInputEmail3">Email address</label>
        <%= f.text_field :mortgage, class: 'form-control', placeholder: "Enter Mortgage" %>
      <% end %>
      <%= form_group_tag(property.errors[:billingaddress]) do %>

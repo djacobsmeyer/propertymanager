@@ -21,6 +21,8 @@
               <%= f.text_field :amount, class: 'form-control input-sm', placeholder: "Enter Amount" %>
             <% end %>
         </li>
+      </ul>
+      <ul class="list-inline">
         <li><%= form_group_tag(@receivable.errors[:vendor]) do %>
               <%= f.label :date %>
               <%= f.date_select :date, class: 'form-control input-md', placeholder: "Enter Date" %>

@@ -1,5 +1,5 @@
-<div class="container">
-<h5> Create New Tenant For <%= @property.address %></h5>
+<div>
+<h4> Create New Tenant For <%= @property.address %></h4>
 
 <%= form_for [@property, Tenant.new] do |f| %>
   <% if @tenant.errors.any? %>

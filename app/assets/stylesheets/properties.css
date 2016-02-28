@@ -11,5 +11,16 @@
 
 #navbar-collapse-1{
   background-color: Dark Cyan;
-  
+
+}
+
+.side-bar {
+  color: white;
+  background-color: grey;
+  border-radius: 5px;
+  list-style-type: none;
+}
+
+.show-detail {
+    
 }

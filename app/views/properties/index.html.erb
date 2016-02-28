@@ -1,6 +1,14 @@
 <div class="container">
-<h5> Create New Property </h5>
-  <div class="new-property">
-    <%= render partial: 'form', locals: { property: @property} =%>
+  <div class="row">
+    <div class="span3">
+      <h3>Select a Property to view details and tenants, or create a new property with the form.</h3>
+    </div>
+  </br>
+    <div class="span9">
+    <h5> Create New Property </h5>
+      <div class="new-property">
+        <%= render partial: 'form', locals: { property: @property} =%>
+      </div>
+    </div>
   </div>
 </div>
